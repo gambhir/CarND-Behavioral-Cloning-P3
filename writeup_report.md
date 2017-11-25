@@ -58,21 +58,16 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I tried various methods of data collection and used all images collected(center, left, and right).  I attempted to use track 1 and 2 and also different input methods.
+Training data was chosen to keep the vehicle driving on the road. I tried various methods of data collection and used all images collected(center, left, and right).  
 
 For details about how I created the training data, see the next section.
 
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
+Essentailly the i looked into existing models to start with. I basically looked at Nvidia's model.
 
-The overall strategy for deriving a model architecture was to essentially use models that were already created.  I tried LeNet, Nvidia's, and also variations of the two.
-
-My first step was to just get something working to give me the confidence to understand how the data was responding on the actual track.
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. More often then not things were equal in terms of mean squared error.  The starting point with LeNet provided a decent base and moving to Nvidia's model worked even better enough.
-
-I found my main problem was at the first turn after the bridge where no lane lines were present and you could run off into the dirt.  This problem wasn't solved by changing the model though.  This problem was solved prior to the creation of the model in preprocessing of the data.
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. Using Nvidia's model worked out really well. 
 
 #### 2. Final Model Architecture
 
@@ -93,11 +88,6 @@ The final model architecture (model.py lines 123-136) consisted of a convolution
 | dense_3 (Dense)                  | (None, 10)          | 510      | dense_2[0][0]         |
 | dense_4 (Dense)                  | (None, 1)           | 11       | dense_3[0][0]         |
 
-**Total params**: 348,219
-
-**Trainable params**: 348,219
-
-**Non-trainable params**: 0
 
 
 Here is a visualization of the architecture.
@@ -107,7 +97,7 @@ Image taken from - http://images.nvidia.com/content/tegra/automotive/images/2016
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I started by driving 2 laps clockwise and then drove counter-clockwise.  Also would some times run into issues on the bridge so I collected extra data back and forth on that section.  I collected data in several different ways.  I collected steering angles using different input methods.  First was a mouse then a keyboard and finally a PS4 controller.  The PS4 controller gave me the best results with the least amount of data.
+To capture good driving behavior, I started by driving  clockwise and then drove counter-clockwise in both direction. The model had to be trained more in bridges where lanes were not visible. 
 
 Here are a few random images from the training set left, center, and then right.
 ![alt text][image2]
@@ -120,85 +110,6 @@ To augment the data set, I also flipped images and angles thinking that this wou
 
 Total Samples :  79734
 
-## Initial Angle Distribution
-Total Left Angles :  1682
-
-Total Right Angles :  1247
-
-Total Straight Angles :  10360
-
-Left to Straight Ratio :  6.159334126040428
-
-Right to Straight Ratio :  8.30793905372895
-
-
-## After TTS
-Train Sample Size :  71760
-
-Validation Sample Size :  7974
-
-
-## After TTS, Angle Distribution
-Total Left Angles :  8608
-
-Total Right Angles :  8678
-
-Total Straight Angles :  54474
-
-Left to Straight Ratio :  6.328299256505576
-
-Right to Straight Ratio :  6.2772528232311595
-
-
-After doing a bit of preprocessing I split the data set up giving 10% to the validation set and the rest to the training set. Shuffling was done by keras in the fit method(shuffle=True).
-
-I used this training data for training the model. The validation set helped determine if the model was overfitting.
-
-The ideal number of epochs was 6/7 as evidenced by :
-
-**Epoch 1/10**
-
-71760/71760 [==============================] - 108s - loss: 0.0503 - acc: 0.2029 - val_loss: 0.0459 - val_acc: 0.1986
-
-**Epoch 2/10**
-
-71760/71760 [==============================] - 102s - loss: 0.0398 - acc: 0.2049 - val_loss: 0.0364 - val_acc: 0.2013
-
-**Epoch 3/10**
-
-71760/71760 [==============================] - 100s - loss: 0.0332 - acc: 0.2066 - val_loss: 0.0342 - val_acc: 0.2012
-
-**Epoch 4/10**
-
-71760/71760 [==============================] - 99s - loss: 0.0283 - acc: 0.2082 - val_loss: 0.0291 - val_acc: 0.2022
-
-**Epoch 5/10**
-
-71760/71760 [==============================] - 101s - loss: 0.0250 - acc: 0.2088 - val_loss: 0.0254 - val_acc: 0.2028
-
-**Epoch 6/10**
-
-71760/71760 [==============================] - 102s - loss: 0.0224 - acc: 0.2091 - val_loss: 0.0225 - val_acc: 0.2033
-
-**Epoch 7/10**
-
-71760/71760 [==============================] - 101s - loss: 0.0206 - acc: 0.2093 - val_loss: 0.0226 - val_acc: 0.2033
-
-**Epoch 8/10**
-
-71760/71760 [==============================] - 102s - loss: 0.0191 - acc: 0.2094 - val_loss: 0.0200 - val_acc: 0.2035
-
-**Epoch 9/10**
-
-71760/71760 [==============================] - 102s - loss: 0.0179 - acc: 0.2095 - val_loss: 0.0202 - val_acc: 0.2037
-
-**Epoch 10/10**
-
-71760/71760 [==============================] - 102s - loss: 0.0168 - acc: 0.2096 - val_loss: 0.0203 - val_acc: 0.2033
-
-
-Accuracy seemed to increase, but it was a very small increase and the time it took to train made me stop at 10.  Also the validation set at a 6 or 7 had less gains which I think if I went over 6 would cause overfitting.
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary.  
 
-Learning behavior cloning was an amazing tool to learn and I hope I can learn more about it in future projects.
