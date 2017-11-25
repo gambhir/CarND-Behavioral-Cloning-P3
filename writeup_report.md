@@ -12,7 +12,9 @@ The goals / steps of this project are the following:
 
 [image1]: ./images/model.png "Model Visualization"
 [image2]: ./images/dataset-preview.png "Dataset Preview"
-[image3]: ./images/dataset-angle.png "Dataset Angles"
+[image3]: ./images/left.png "Dataset left"
+[image4]: ./images/center.png "Dataset center"
+[image5]: ./images/right.png "Dataset right"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -104,9 +106,8 @@ Here are a few random images from the training set left, center, and then right.
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to move back to center.
 
-To augment the data set, I also flipped images and angles thinking that this would first increase the number of data samples I had, but also strengthen my distributions of left, right, and straight angles. For example here is a rouge break down of angles with left being -.15 and right being .15 less than or greater than.
-
-![alt text][image3]
+To augment the data set, I also flipped images and angles thinking that this would first increase the number of data samples I had, but also strengthen my distributions of left, right, and straight angles.
+![alt text][image3] ![alt text][image4] ![alt text][image5]
 
 Total Samples :  79734
 
