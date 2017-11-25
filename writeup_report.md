@@ -102,12 +102,11 @@ Image taken from - http://images.nvidia.com/content/tegra/automotive/images/2016
 To capture good driving behavior, I started by driving  clockwise and then drove counter-clockwise in both direction. The model had to be trained more in bridges where lanes were not visible. 
 
 Here are a few random images from the training set left, center, and then right.
-![alt text]
+![alt text][image3] ![alt text][image4] ![alt text][image5]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to move back to center.
 
 To augment the data set, I also flipped images and angles thinking that this would first increase the number of data samples I had, but also strengthen my distributions of left, right, and straight angles.
-![alt text][image3] ![alt text][image4] ![alt text][image5]
 
 Total Samples :  79734
 
