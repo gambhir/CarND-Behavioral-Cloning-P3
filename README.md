@@ -107,7 +107,7 @@ Image taken from - http://images.nvidia.com/content/tegra/automotive/images/2016
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I started by driving 2 laps clockwise and then drove counter-clockwise.  Also would some times run into issues on the bridge so I collected extra data back and forth on that section.  I collected data in several different ways.  I collected steering angles using different input methods.  First was a mouse then a keyboard and finally a PS4 controller.  The PS4 controller gave me the best results with the least amount of data.
+To capture good driving behavior, I started by driving 2 laps clockwise and then drove counter-clockwise.  Also would some times run into issues on the bridge so I collected extra data back and forth on that section.  I collected data in several different ways.  
 
 Here are a few random images from the training set left, center, and then right.
 ![alt text][image2]
